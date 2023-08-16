@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title> Vale do Orvalho - Reservas</title>
+    <link rel="stylesheet" type="text/css"  href="../css/style.css" />
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+<div align="center"><img src="../media/Logo_of_Stardew_Valley.jpg"></div>
+<nav class="menu">
+    <ul>
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="reserva.html">Reservas</a></li>
+        <li><a href="aboutus.html">Sobre Nós</a></li>
+        <li><a href="noticias.html">Notícias</a></li>
+        <li><a href="#">Nossas Redes</a>
+            <ul>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<header>
+    <h1>Faça sua reserva!</h1>
+</header>
+
+<main>
+    <form id="formReserva" action="/reserva" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" pattern="[0-9]{2}-[0-9]{4,5}-[0-9]{4}" required title="Digite um número de telefone válido no formato XX-XXXX-XXXX ou XX-XXXXX-XXXXX">
+
+        <label for="checkIn">Data Check-in:</label>
+        <input type="date" id="checkIn">
+
+        <label for="checkOut">Data Check-out:</label>
+        <input type="date" id="checkOut">
+
+        <label for="roomType">Tipo de Acomodação:</label>
+        <select id="roomType" >
+            <option value="">Selecione o Tipo de Acomodação</option>
+            <option value="solteiro">Solteiro</option>
+            <option value="casal">Casal</option>
+            <option value="suite">Suíte</option>
+            <option value="triplo">Triplo</option>
+        </select>
+
+        <button type="submit">Solicitar Reserva</button>
+    </form>
+    <div id="mensagemReserva"></div>
+
+</main>
+
+<script src="../js/reserva.js"></script>
+
+</body>
+
+</html>
