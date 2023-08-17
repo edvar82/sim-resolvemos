@@ -27,7 +27,7 @@
 <div align="center">
     <form id="imageForm" enctype="multipart/form-data" action="/upload" method="POST">
         <label for="image">Imagem:</label>
-        <input type="file" id="image" accept="image/*">
+        <input type="file" id="image" name="image" accept="image/*">
     </form>
     <form id="newsForm">
         <label for="title">Título:</label>
@@ -40,8 +40,8 @@
         <label for="imageCaption">Legenda da Imagem:</label>
         <input type="text" id="imageCaption">
       
+        <button type="submit" id="publicar">Publicar</button>
     </form>
-    <button type="submit" id="publicar">Publicar</button>
 </div>
 </body>
 <script src="../js/submit-news-post.js"></script>

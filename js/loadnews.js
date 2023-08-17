@@ -1,40 +1,40 @@
 const servidor = 'http://localhost'; // Endereço do servidor
 const porta = 3000; // Número da porta para se comunicar com o servidor
+const caminho = '../uploads/';
 
-// Função para formatar a data no formato "dd/mm/yyyy - hh:mm"
-function formatarData(dataString) {
-    const dataObj = new Date(dataString);
-    const dia = String(dataObj.getDate()).padStart(2, '0');
-    const mes = String(dataObj.getMonth() + 1).padStart(2, '0');
-    const ano = dataObj.getFullYear();
-    const horas = String(dataObj.getHours()).padStart(2, '0');
-    const minutos = String(dataObj.getMinutes()).padStart(2, '0');
-    return `${dia}/${mes}/${ano} - ${horas}:${minutos}`;
-}
+// loadnews.js
+document.addEventListener('DOMContentLoaded', async () => {
+  const newsContainer = document.getElementById('newsContainer');
 
-// Função para buscar as postagens de notícias do servidor
-fetch(`${servidor}:${porta}/api/noticias`)
-    .then(response => response.json())
-    .then(newsData => {
-      // Ordena as postagens de notícias em ordem cronológica reversa
-      newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+  try {
+    const response = await fetch(`${servidor}:${porta}/api/noticias `);
+    const noticias = await response.json();
 
-      const newsContainer = document.getElementById('newsContainer');
-      newsData.forEach(newsPost => {
-        const newsElement = document.createElement('div');
-        newsElement.innerHTML = `
-          <h2>${newsPost.title}</h2>
-          <h3>${formatarData(newsPost.date)}</h3>
-          <p>${newsPost.body}</p><br>
-                <div align="center">
-            <img src="../${newsPost.imageUrl}"/>
-            <pre>${newsPost.imageCaption}</pre>
-                </div>
-                <br>
-            `;
-        newsContainer.appendChild(newsElement);
-        });
-    })
-    .catch(error => {
-        console.error('Erro ao buscar notícias:', error);
-    });
+    if (Array.isArray(noticias)) {
+      noticias.forEach((noticia) => {
+        const noticiaDiv = document.createElement('div');
+        noticiaDiv.className = 'noticia';
+
+        const titulo = document.createElement('h1');
+        titulo.textContent = noticia.title;
+
+        const corpo = document.createElement('p');
+        corpo.textContent = noticia.body;
+
+        const imagem = document.createElement('img');
+        imagem.src = `${caminho}/${noticia.image.split('uploads')[1]}`;
+        imagem.alt = noticia.imageCaption;
+
+        noticiaDiv.appendChild(titulo);
+        noticiaDiv.appendChild(corpo);
+        noticiaDiv.appendChild(imagem);
+
+        newsContainer.appendChild(noticiaDiv);
+      });
+    } else {
+      console.error('A resposta da API não está no formato esperado.');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
