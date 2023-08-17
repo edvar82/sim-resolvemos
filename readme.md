@@ -17,7 +17,4 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
    2. Logo em seguida, execute a seguinte query: `flush privileges;`
 4. Execute o script `Site.sql` para criar as tabela;
 5. Inicie a aplicação com o comando `npm start`;
-6. Acesse a aplicação em `http://localhost:3000/index.html`.
-7. Para enviar alguma notícia, acesse `http://localhost:3000/write` e crie uma nova notícia.
-8. Para visualizar as notícias, acesse `http://localhost:3000/noticias`.
-9. Para criar uma reserva, acesse `http://localhost:3000/reserva` e crie uma nova reserva; Caso a reserva seja efetuada você será redirecionado para a página de sucesso `http://localhost:3000/confirma_reserva.html`, mostrando a confirmação da reserva.
+6. Acesse as paginas a partir do index.html e para escrever uma noticia abra a pasta `page` e clique no write.html
